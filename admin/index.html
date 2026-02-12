@@ -4,9 +4,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>内容管理后台</title>
-  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3/dist/decap-cms.css" />
-</head>
-<body>
   <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
+  <script>
+    // 完全禁用外部 OAuth，强制使用 implicit + token
+    window.CMS_MANUAL_INIT = true;
+    window.initCMS = function() {
+      DecapCMS.init({
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'jingshow/jingshow.github.io',
+            branch: 'main',
+            auth_type: 'implicit',
+            api_root: 'https://api.github.com',
+            base_url: 'https://api.github.com',  // 强制走 GitHub API，不跳转
+            site_domain: 'jingshow.github.io'
+          },
+          media_folder: 'images/uploads',
+          public_folder: '/images/uploads',
+          collections: [
+            {
+              name: 'pages',
+              label: '页面内容',
+              files: [
+                {
+                  name: 'home',
+                  label: '首页',
+                  file: 'index.html',
+                  fields: [
+                    { label: '页面标题', name: 'title', widget: 'string' },
+                    { label: '主体内容', name: 'body', widget: 'markdown' }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      });
+    };
+  </script>
+</head>
+<body onload="initCMS()">
+  <!-- 加载动画（可选） -->
+  <div style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:system-ui;">
+    <div style="text-align:center;">加载后台编辑器...</div>
+  </div>
 </body>
 </html>
