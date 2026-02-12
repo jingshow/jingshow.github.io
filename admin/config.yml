@@ -1,7 +1,8 @@
 backend:
   name: github
-  repo: jingshow/jingshow.github.io   # 比如 lilei/lilei.github.io
+  repo: jingshow/jingshow.github.io
   branch: main
+  auth_type: implicit
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -12,7 +13,7 @@ collections:
     files:
       - name: "home"
         label: "首页"
-        file: "index.html"
+        file:"index.html"
         fields:
           - {label: "页面标题", name: "title", widget: "string"}
           - {label: "主体内容", name: "body", widget: "markdown"}
