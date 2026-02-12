@@ -13,7 +13,7 @@ collections:
     files:
       - name: "home"
         label: "首页"
-        file:"index.html"
+        file: "index.html"
         fields:
-          - {label: "页面标题", name: "title", widget: "string"}
-          - {label: "主体内容", name: "body", widget: "markdown"}
+          - { label: "页面标题", name: "title", widget: "string" }
+          - { label: "主体内容", name: "body", widget: "markdown" }
